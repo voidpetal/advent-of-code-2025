@@ -1,38 +1,44 @@
 include("../common/io_functions.jl")
 using .CommonIO
 
-function count_adjacent(map::Vector{String}, x::Int, y::Int)
+function count_adjacent(map::Matrix{Char}, x::Int, y::Int)
     count = 0
+    rows, cols = size(map)
     for dy in -1:1
         for dx in -1:1
             if (dx == 0 && dy == 0)
                 continue
             end
             nx, ny = x + dx, y + dy
-            if 1 <= nx <= length(map[1]) && 1 <= ny <= length(map)
-                count += map[ny][nx] == '@' ? 1 : 0
+            if 1 <= ny <= rows && 1 <= nx <= cols
+                count += (map[ny, nx] == '@')
             end
         end
     end
     return count
 end
 
-function get_removable_rolls(map::Vector{String})
-    paper_rolls = []
-    for y in 1:length(map)
-        for x in 1:length(map[1])
-            if map[y][x] == '@'
-                count = count_adjacent(map, x, y)
-                if count < 4
-                    push!(paper_rolls, (x, y))
+function get_removable_rolls(map::Matrix{Char})
+    max_rolls = count(c -> c == '@', map)
+    paper_rolls = Vector{Tuple{Int, Int}}(undef, max_rolls)
+    idx = 1
+    rows, cols = size(map)
+    for y in 1:rows
+        for x in 1:cols
+            if map[y, x] == '@'
+                c = count_adjacent(map, x, y)
+                if c < 4
+                    paper_rolls[idx] = (x, y)
+                    idx += 1
                 end
             end
         end
     end
+    resize!(paper_rolls, idx - 1)
     return paper_rolls
 end
 
-function solve(map::Vector{String}, part::Int)
+function solve(map::Matrix{Char}, part::Int)
     map_copy = copy(map)
     total = 0
     while true
@@ -42,7 +48,7 @@ function solve(map::Vector{String}, part::Int)
         end
         total += length(removable_rolls)
         for (x, y) in removable_rolls
-            map_copy[y] = map_copy[y][1:x-1] * '.' * map_copy[y][x+1:end]
+            map_copy[y, x] = '.'
         end
 
         if part == 1
@@ -54,5 +60,6 @@ end
 
 
 map_lines = CommonIO.read_input_lines(4)
-println("Solution to part 1:\n", solve(map_lines, 1)) # 1551
-println("Solution to part 2:\n", solve(map_lines, 2)) # 9784
+map_grid = hcat(collect.(map_lines)...)
+println("Solution to part 1:\n", solve(map_grid, 1)) # 1551
+println("Solution to part 2:\n", solve(map_grid, 2)) # 9784
