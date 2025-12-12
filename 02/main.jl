@@ -26,5 +26,5 @@ function solve(id_ranges::Vector{String}, part::Int)
 end
 
 id_ranges = split(CommonIO.read_input_lines(2)[1], ",")
-println("Solution to part 1:\n", solve(id_ranges, 1))
-println("Solution to part 2:\n", solve(id_ranges, 2))
+println("Solution to part 1:\n", solve(id_ranges, 1)) # 20223751480
+println("Solution to part 2:\n", solve(id_ranges, 2)) # 30260171216
