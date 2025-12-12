@@ -41,7 +41,7 @@ end
 rotations = CommonIO.read_input_lines(1)
 
 println("Solution to part 1:")
-println(solve(rotations, false))
+println(solve(rotations, false)) # 1023
 
 println("Solution to part 2:")
-println(solve(rotations, true))
+println(solve(rotations, true)) # 5899
