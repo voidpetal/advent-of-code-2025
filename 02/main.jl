@@ -20,7 +20,7 @@ function find_invalid(range::AbstractString, validator::Function)
     filter(validator, start_num:end_num)
 end
 
-function solve(id_ranges::Vector{String}, part::Int)
+function solve(id_ranges::Vector{SubString{String}}, part::Int)
     validator = part == 1 ? is_invalid1 : is_invalid2
     sum(sum(find_invalid(range, validator)) for range in id_ranges)
 end
