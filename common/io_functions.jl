@@ -2,8 +2,8 @@ module CommonIO
 
 export read_input_lines, parse_int_list
 
-function read_input_lines(day::Int)
-    filename = joinpath(string(day, pad=2), "input.txt")
+function read_input_lines(day::Int, test::Bool=false)
+    filename = joinpath(string(day, pad=2), test ? "test.txt" : "input.txt")
     return readlines(abspath(filename))
 end
 
