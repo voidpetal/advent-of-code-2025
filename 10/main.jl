@@ -4,7 +4,7 @@ using ProgressBars
 using JuMP
 using HiGHS
 
-function parse_input(line)
+function parse_input(line::String)::Tuple{Vector{Int}, Vector{Vector{Int}}, Vector{Int}}
     # Parse: "[indicators] (btn1) (btn2) ... {joltages}"
     indicators = [Int(c == '#') for c in match(r"\[(.*)\]", line).captures[1]]
     buttons = [parse.(Int, split(m.captures[1], ",")) .+ 1 
@@ -13,7 +13,7 @@ function parse_input(line)
     return (indicators, buttons, joltages)
 end
 
-function count_fewest_presses(target, buttons, part2=false)
+function count_fewest_presses(target::Vector{Int}, buttons::Vector{Vector{Int}}, part2::Bool=false)
     # Build button activation matrix: A[i,j] = 1 if button j affects counter i
     A = zeros(Int, length(target), length(buttons))
     for (j, btn) in enumerate(buttons), i in btn
@@ -40,7 +40,7 @@ function count_fewest_presses(target, buttons, part2=false)
     return termination_status(model) == OPTIMAL ? round(Int, objective_value(model)) : 0
 end
 
-function solve(manual, part2=false)
+function solve(manual::Vector{String}, part2::Bool=false)
     parsed = parse_input.(manual)
     indicators, buttons, joltages = [getindex.(parsed, i) for i in 1:3]
     

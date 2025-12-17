@@ -3,8 +3,8 @@ using .CommonIO
 using PolygonAlgorithms
 using ProgressBars
 
-get_area(t1, t2) = prod(abs.(t1 .- t2) .+ 1)
-build_rectangle(t1, t2) = [
+get_area(t1::Tuple{Float64, Float64}, t2::Tuple{Float64, Float64}) = prod(abs.(t1 .- t2) .+ 1)
+build_rectangle(t1::Tuple{Float64, Float64}, t2::Tuple{Float64, Float64}) = [
     (t1[1], t1[2]),
     (t2[1], t1[2]),
     (t2[1], t2[2]),
@@ -12,7 +12,7 @@ build_rectangle(t1, t2) = [
 ]
 
 # Shoelace formula for polygon area
-function polygon_area(vertices)
+function polygon_area(vertices::Vector{Tuple{Float64, Float64}})
     xs = [v[1] for v in vertices]
     ys = [v[2] for v in vertices]
     
@@ -20,7 +20,7 @@ function polygon_area(vertices)
 end
 
 # If all points of rectangle are inside the area described by red tiles
-function is_valid_rectangle(tiles, i, j)
+function is_valid_rectangle(tiles::Vector{Tuple{Float64, Float64}}, i::Int, j::Int)
     rectangle = build_rectangle(tiles[i], tiles[j])
     
     # Check if rectangle is inside polygon
@@ -37,9 +37,9 @@ function is_valid_rectangle(tiles, i, j)
     return isapprox(rect_area, intersect_area, rtol=1e-9)
 end
 
-function solve(tiles::Vector{Tuple{Float64, Float64}}, check_intersection::Bool=false)    
+function solve(tiles::Vector{Tuple{Float64, Float64}}, check_intersection::Bool=false)
     # Generate all pairs with their potential areas
-    pairs = [(i, j, get_area(tiles[i], tiles[j])) 
+    pairs = [(i, j, get_area(tiles[i], tiles[j]))
              for i in 1:length(tiles) 
              for j in i+1:length(tiles)]
     
