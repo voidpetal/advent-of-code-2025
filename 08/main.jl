@@ -44,5 +44,5 @@ end
 
 coordinates = CommonIO.read_input_lines(8) |> x -> map(line -> parse.(Int, split(line, ",")), x)
 
-println("Solution to part 1:\n", solve(coordinates, 10^3)) # 330786
-println("Solution to part 2:\n", solve(coordinates, 10^6)) # 3276581616
+println("Part 1: ", solve(coordinates, 10^3))  # 330786
+println("Part 2: ", solve(coordinates, 10^6))  # 3276581616

@@ -64,5 +64,5 @@ function solve(tiles::Vector{Tuple{Float64, Float64}}, check_intersection::Bool=
 end
     
 red_tiles = CommonIO.read_input_lines(9) |> x -> map(line -> Tuple(parse.(Float64, split(line, ","))), x)
-println("Solution to part 1:\n", solve(red_tiles)) # 4749672288
-println("Solution to part 2:\n", solve(red_tiles, true)) # 1479665889
+println("Part 1: ", solve(red_tiles))        # 4749672288
+println("Part 2: ", solve(red_tiles, true))  # 1479665889

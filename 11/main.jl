@@ -45,5 +45,5 @@ end
 edges = CommonIO.read_input_lines(11)
 graph = build_graph(edges)
 
-println("Solution to part 1:\n", solve(graph)) # 764
-println("Solution to part 2:\n", solve(graph, true)) # 462444153119850
+println("Part 1: ", solve(graph))        # 764
+println("Part 2: ", solve(graph, true))  # 462444153119850

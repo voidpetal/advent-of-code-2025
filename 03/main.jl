@@ -31,5 +31,5 @@ function solve(joltages::Vector{String}, num_batteries::Int)
 end
 
 joltages = CommonIO.read_input_lines(3)
-println("Solution to part 1:\n", solve(joltages, 2)) # 17412
-println("Solution to part 2:\n", solve(joltages, 12)) # 172681562473501
+println("Part 1: ", solve(joltages, 2))   # 17412
+println("Part 2: ", solve(joltages, 12))  # 172681562473501

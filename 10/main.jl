@@ -51,5 +51,5 @@ end
 
 manual = CommonIO.read_input_lines(10)
 
-println("Solution to part 1:\n", solve(manual)) # 457
-println("Solution to part 2:\n", solve(manual, true)) # 17576
+println("Part 1: ", solve(manual))        # 457
+println("Part 2: ", solve(manual, true))  # 17576

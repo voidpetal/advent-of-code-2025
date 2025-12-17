@@ -57,5 +57,5 @@ ids = [parse.(Int, line) for line in input_list if !isempty(line) && !contains(l
 ranges = map(line -> parse.(Int, split(line, "-")), ranges)
 
 
-println("Solution to part 1:\n", solve(ranges, ids, 1)) # 613
-println("Solution to part 2:\n", solve(ranges, ids, 2)) # 336495597913098
+println("Part 1: ", solve(ranges, ids, 1))  # 613
+println("Part 2: ", solve(ranges, ids, 2))  # 336495597913098

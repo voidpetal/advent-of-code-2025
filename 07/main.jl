@@ -40,5 +40,5 @@ solve(map_grid::Matrix{Char}, start_pos::CartesianIndex{2}) = solve(map_grid, st
 
 map_grid = CommonIO.read_input_lines(7) .|> collect |> splat(hcat)
 start_pos = findfirst(==('S'), map_grid)
-println("Solution to part 1:\n", solve(map_grid, start_pos[1])) # 1566
-println("Solution to part 2:\n", solve(map_grid, start_pos)) # 5921061943075
+println("Part 1: ", solve(map_grid, start_pos[1]))  # 1566
+println("Part 2: ", solve(map_grid, start_pos))     # 5921061943075

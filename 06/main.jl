@@ -42,5 +42,5 @@ numbers = [[rows[r][c] for r in 1:length(rows)]
 
 operations = split(input_list[end])
 
-println("Solution to part 1:\n", solve(numbers, operations)) # 4648618073226
-println("Solution to part 2:\n", solve(numbers_list, operations)) # 7329921182115
+println("Part 1: ", solve(numbers, operations))       # 4648618073226
+println("Part 2: ", solve(numbers_list, operations))  # 7329921182115

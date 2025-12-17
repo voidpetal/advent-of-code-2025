@@ -61,5 +61,5 @@ end
 
 map_lines = CommonIO.read_input_lines(4)
 map_grid = hcat(collect.(map_lines)...)
-println("Solution to part 1:\n", solve(map_grid, 1)) # 1551
-println("Solution to part 2:\n", solve(map_grid, 2)) # 9784
+println("Part 1: ", solve(map_grid, 1))  # 1551
+println("Part 2: ", solve(map_grid, 2))  # 9784
