@@ -13,7 +13,13 @@ Install dependencies:
 julia --project=. -e 'using Pkg; Pkg.instantiate()'
 ```
 
-Run solution:
+### Run Individual Day
 ```bash
 julia --project=. <day>/main.jl
+```
+
+### Run All Solutions
+Run all days with festive output, timing, and answer verification:
+```bash
+julia --project=. run_all.jl
 ```
