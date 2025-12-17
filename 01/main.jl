@@ -1,6 +1,7 @@
 include("../common/io_functions.jl")
+include("../common/timing.jl")
 using .CommonIO
-
+using .Timing
 
 function move_dial(arrow::Int, rotation::Char, times::Int)
     if rotation == 'R'
@@ -40,5 +41,8 @@ end
 
 rotations = CommonIO.read_input_lines(1)
 
-println("Part 1: ", solve(rotations, false))  # 1023
-println("Part 2: ", solve(rotations, true))   # 5899
+t1 = @elapsed result1 = solve(rotations, false)
+t2 = @elapsed result2 = solve(rotations, true)
+
+print_solution(1, result1, t1)  # 1023
+print_solution(2, result2, t2)  # 5899

@@ -1,5 +1,7 @@
 include("../common/io_functions.jl")
+include("../common/timing.jl")
 using .CommonIO
+using .Timing
 
 distance(p1::Vector{Int}, p2::Vector{Int}) = sum(abs2, p1 .- p2)
 
@@ -44,5 +46,8 @@ end
 
 coordinates = CommonIO.read_input_lines(8) |> x -> map(line -> parse.(Int, split(line, ",")), x)
 
-println("Part 1: ", solve(coordinates, 10^3))  # 330786
-println("Part 2: ", solve(coordinates, 10^6))  # 3276581616
+t1 = @elapsed result1 = solve(coordinates, 10^3)
+t2 = @elapsed result2 = solve(coordinates, 10^6)
+
+print_solution(1, result1, t1)  # 330786
+print_solution(2, result2, t2)  # 3276581616

@@ -1,5 +1,7 @@
 include("../common/io_functions.jl")
+include("../common/timing.jl")
 using .CommonIO
+using .Timing
 
 function count_adjacent(map::Matrix{Char}, x::Int, y::Int)
     count = 0
@@ -61,5 +63,9 @@ end
 
 map_lines = CommonIO.read_input_lines(4)
 map_grid = hcat(collect.(map_lines)...)
-println("Part 1: ", solve(map_grid, 1))  # 1551
-println("Part 2: ", solve(map_grid, 2))  # 9784
+
+t1 = @elapsed result1 = solve(map_grid, 1)
+t2 = @elapsed result2 = solve(map_grid, 2)
+
+print_solution(1, result1, t1)  # 1551
+print_solution(2, result2, t2)  # 9784

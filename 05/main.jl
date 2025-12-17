@@ -1,5 +1,7 @@
 include("../common/io_functions.jl")
+include("../common/timing.jl")
 using .CommonIO
+using .Timing
 
 function combine_ranges(ranges::Vector{Vector{Int}})
     ranges = sort(ranges, by = r -> r[1])
@@ -56,6 +58,8 @@ ids = [parse.(Int, line) for line in input_list if !isempty(line) && !contains(l
 
 ranges = map(line -> parse.(Int, split(line, "-")), ranges)
 
+t1 = @elapsed result1 = solve(ranges, ids, 1)
+t2 = @elapsed result2 = solve(ranges, ids, 2)
 
-println("Part 1: ", solve(ranges, ids, 1))  # 613
-println("Part 2: ", solve(ranges, ids, 2))  # 336495597913098
+print_solution(1, result1, t1)  # 613
+print_solution(2, result2, t2)  # 336495597913098

@@ -1,5 +1,7 @@
 include("../common/io_functions.jl")
+include("../common/timing.jl")
 using .CommonIO
+using .Timing
 
 function has_repeated_pattern(s::AbstractString, pattern_len::Int)
     length(s) % pattern_len != 0 && return false
@@ -26,5 +28,9 @@ function solve(id_ranges::Vector{SubString{String}}, part::Int)
 end
 
 id_ranges = split(CommonIO.read_input_lines(2)[1], ",")
-println("Part 1: ", solve(id_ranges, 1))  # 20223751480
-println("Part 2: ", solve(id_ranges, 2))  # 30260171216
+
+t1 = @elapsed result1 = solve(id_ranges, 1)
+t2 = @elapsed result2 = solve(id_ranges, 2)
+
+print_solution(1, result1, t1)  # 20223751480
+print_solution(2, result2, t2)  # 30260171216

@@ -1,5 +1,7 @@
 include("../common/io_functions.jl")
+include("../common/timing.jl")
 using .CommonIO
+using .Timing
 
 function find_largest_combination(bank::Vector{Int}, num_batteries)
     # Base case: Not enough digits available
@@ -31,5 +33,9 @@ function solve(joltages::Vector{String}, num_batteries::Int)
 end
 
 joltages = CommonIO.read_input_lines(3)
-println("Part 1: ", solve(joltages, 2))   # 17412
-println("Part 2: ", solve(joltages, 12))  # 172681562473501
+
+t1 = @elapsed result1 = solve(joltages, 2)
+t2 = @elapsed result2 = solve(joltages, 12)
+
+print_solution(1, result1, t1)  # 17412
+print_solution(2, result2, t2)  # 172681562473501

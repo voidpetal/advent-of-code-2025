@@ -1,5 +1,7 @@
 include("../common/io_functions.jl")
+include("../common/timing.jl")
 using .CommonIO
+using .Timing
 
 struct AddOp end
 struct MulOp end
@@ -42,5 +44,8 @@ numbers = [[rows[r][c] for r in 1:length(rows)]
 
 operations = split(input_list[end])
 
-println("Part 1: ", solve(numbers, operations))       # 4648618073226
-println("Part 2: ", solve(numbers_list, operations))  # 7329921182115
+t1 = @elapsed result1 = solve(numbers, operations)
+t2 = @elapsed result2 = solve(numbers_list, operations)
+
+print_solution(1, result1, t1)  # 4648618073226
+print_solution(2, result2, t2)  # 7329921182115

@@ -1,5 +1,7 @@
 include("../common/io_functions.jl")
+include("../common/timing.jl")
 using .CommonIO
+using .Timing
 using ProgressBars
 using JuMP
 using HiGHS
@@ -51,5 +53,8 @@ end
 
 manual = CommonIO.read_input_lines(10)
 
-println("Part 1: ", solve(manual))        # 457
-println("Part 2: ", solve(manual, true))  # 17576
+t1 = @elapsed result1 = solve(manual)
+t2 = @elapsed result2 = solve(manual, true)
+
+print_solution(1, result1, t1)  # 457
+print_solution(2, result2, t2)  # 17576

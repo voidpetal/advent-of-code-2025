@@ -1,5 +1,7 @@
 include("../common/io_functions.jl")
+include("../common/timing.jl")
 using .CommonIO
+using .Timing
 
 function solve(map_grid::Matrix{Char}, start_pos::Int)
     beams = Set(start_pos)
@@ -40,5 +42,9 @@ solve(map_grid::Matrix{Char}, start_pos::CartesianIndex{2}) = solve(map_grid, st
 
 map_grid = CommonIO.read_input_lines(7) .|> collect |> splat(hcat)
 start_pos = findfirst(==('S'), map_grid)
-println("Part 1: ", solve(map_grid, start_pos[1]))  # 1566
-println("Part 2: ", solve(map_grid, start_pos))     # 5921061943075
+
+t1 = @elapsed result1 = solve(map_grid, start_pos[1])
+t2 = @elapsed result2 = solve(map_grid, start_pos)
+
+print_solution(1, result1, t1)  # 1566
+print_solution(2, result2, t2)  # 5921061943075

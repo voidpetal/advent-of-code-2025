@@ -1,5 +1,7 @@
 include("../common/io_functions.jl")
+include("../common/timing.jl")
 using .CommonIO
+using .Timing
 using PolygonAlgorithms
 using ProgressBars
 
@@ -64,5 +66,9 @@ function solve(tiles::Vector{Tuple{Float64, Float64}}, check_intersection::Bool=
 end
     
 red_tiles = CommonIO.read_input_lines(9) |> x -> map(line -> Tuple(parse.(Float64, split(line, ","))), x)
-println("Part 1: ", solve(red_tiles))        # 4749672288
-println("Part 2: ", solve(red_tiles, true))  # 1479665889
+
+t1 = @elapsed result1 = solve(red_tiles)
+t2 = @elapsed result2 = solve(red_tiles, true)
+
+print_solution(1, result1, t1)  # 4749672288
+print_solution(2, result2, t2)  # 1479665889

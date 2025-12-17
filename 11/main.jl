@@ -1,5 +1,7 @@
 include("../common/io_functions.jl")
+include("../common/timing.jl")
 using .CommonIO
+using .Timing
 
 function build_graph(edges::Vector{String})
     graph = Dict{String, Vector{String}}()
@@ -45,5 +47,8 @@ end
 edges = CommonIO.read_input_lines(11)
 graph = build_graph(edges)
 
-println("Part 1: ", solve(graph))        # 764
-println("Part 2: ", solve(graph, true))  # 462444153119850
+t1 = @elapsed result1 = solve(graph)
+t2 = @elapsed result2 = solve(graph, true)
+
+print_solution(1, result1, t1)  # 764
+print_solution(2, result2, t2)  # 462444153119850
