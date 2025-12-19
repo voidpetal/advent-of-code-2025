@@ -2,7 +2,6 @@ include("../common/io_functions.jl")
 include("../common/timing.jl")
 using .CommonIO
 using .Timing
-using ProgressBars
 using JuMP
 using HiGHS
 
