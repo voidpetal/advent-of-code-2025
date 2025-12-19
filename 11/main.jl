@@ -15,7 +15,7 @@ end
 function count_unique_paths(graph::Dict{String, Vector{String}}, node::String, 
                            visited::Set{String}=Set{String}(), 
                            constraints::Vector{String}=Vector{String}(),
-                           cache::Dict=Dict{Tuple{String, Vector{String}}, Int}())::Int
+                           cache::Dict=Dict{Tuple{String, Vector{String}}, Int}())
     # Base case: reached destination
     node == "out" && return isempty(constraints) ? 1 : 0
     
@@ -38,7 +38,7 @@ function count_unique_paths(graph::Dict{String, Vector{String}}, node::String,
     return cache[cache_key] = total_paths
 end
 
-function solve(graph::Dict{String, Vector{String}}, part2::Bool=false)::Int
+function solve(graph::Dict{String, Vector{String}}, part2::Bool=false)
     start_node = part2 ? "svr" : "you"
     required_visits = part2 ? ["dac", "fft"] : String[]
     count_unique_paths(graph, start_node, Set{String}(), required_visits)
