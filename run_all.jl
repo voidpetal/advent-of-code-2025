@@ -25,7 +25,7 @@ const EXPECTED_ANSWERS = Dict(
     9  => [4749672288, 1479665889],
     10 => [457, 17576],
     11 => [764, 462444153119850],
-    12 => [nothing, nothing]  # Add when completed
+    12 => [485, 0]
 )
 
 function format_time(seconds::Float64)
